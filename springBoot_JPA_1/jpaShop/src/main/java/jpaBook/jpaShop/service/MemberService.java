@@ -32,12 +32,12 @@ public class MemberService {
 	}
 
 	// 회원 전체 조회
-	public List<Member> findMembers() {
+	public List<Member> findAllMembers() {
 		return memberRepository.findAll();
 	}
 
 	// 회원 조회
-	public Member findOne(Long memberId) {
+	public Member findMember(Long memberId) {
 		return memberRepository.findOne(memberId);
 	}
 }
