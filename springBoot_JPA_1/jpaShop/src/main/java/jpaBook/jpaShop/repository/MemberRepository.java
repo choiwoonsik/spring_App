@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.validation.constraints.Email;
 import java.util.List;
 
 @Repository
@@ -29,6 +30,12 @@ public class MemberRepository {
 	public List<Member> findByName(String name) {
 		return em.createQuery("select m from Member m where m.name = :name", Member.class)
 				.setParameter("name", name)
+				.getResultList();
+	}
+
+	public List<Member> findByEmail(@Email String email) {
+		return em.createQuery("select m from Member m where m.email = :email", Member.class)
+				.setParameter("email", email)
 				.getResultList();
 	}
 }

@@ -6,6 +6,9 @@ import jpaBook.jpaShop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -24,15 +27,27 @@ public class MemberController {
 	}
 
 	@PostMapping("/members/new")
-	public String create(@Valid MemberForm form) {
+	public String create(@Valid MemberForm form, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "members/createMemberForm";
+		}
 
 		Address address = new Address(form.getZipcode(), form.getStreetAdr(), form.getDetailAdr());
 
 		Member member = new Member();
 		member.setName(form.getName());
+		member.setEmail(form.getEmail());
 		member.setAddress(address);
 
-		memberService.join(member);
+		try {
+			memberService.join(member);
+		} catch (Exception IllegalStateException) {
+			result.addError(new FieldError("member", "email", "중복된 사용자가 존재합니다."));
+			if (result.hasErrors())
+				return "members/createMemberForm";
+		}
+
 		return "redirect:/";
 	}
 }
