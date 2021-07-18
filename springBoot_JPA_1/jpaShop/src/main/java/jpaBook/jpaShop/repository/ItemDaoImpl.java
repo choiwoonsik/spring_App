@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-@Repository
+@Repository("ItemDao")
 @RequiredArgsConstructor
-public class ItemRepository {
+public class ItemDaoImpl implements ItemDao {
 
 	private final EntityManager em;
 

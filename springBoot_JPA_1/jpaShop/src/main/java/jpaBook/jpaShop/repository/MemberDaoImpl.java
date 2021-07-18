@@ -8,9 +8,9 @@ import javax.persistence.EntityManager;
 import javax.validation.constraints.Email;
 import java.util.List;
 
-@Repository
+@Repository("MemberDao")
 @RequiredArgsConstructor
-public class MemberRepository {
+public class MemberDaoImpl implements MemberDao {
 
 	private final EntityManager em;
 

@@ -4,7 +4,7 @@ import jpaBook.jpaShop.domain.*;
 import jpaBook.jpaShop.domain.item.Book;
 import jpaBook.jpaShop.domain.item.Item;
 import jpaBook.jpaShop.exception.NotEnoughStockException;
-import jpaBook.jpaShop.repository.OrderRepository;
+import jpaBook.jpaShop.repository.OrderDaoImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class OrderServiceTest {
 	@Autowired
 	OrderService orderService;
 	@Autowired
-	OrderRepository orderRepository;
+	OrderDaoImpl orderDaoImpl;
 
 	private Member createMember(String name) {
 		Member member = new Member();
@@ -55,7 +55,7 @@ public class OrderServiceTest {
 		Long orderId = orderService.order(member.getId(), book.getId(), orderCount);
 
 		//then
-		Order getOrder = orderRepository.findOne(orderId);
+		Order getOrder = orderDaoImpl.findOne(orderId);
 		Assertions.assertEquals(OrderStatus.ORDER, getOrder.getStatus(), "상품주문시 상태는 Order");
 		Assertions.assertEquals(1, getOrder.getOrderItems().size(), "주문한 상품 종류 수가 정확해야 한다");
 		Assertions.assertEquals(10000 * orderCount, getOrder.getTotalPrice(), "주문 금액이 일치해야 한다");
@@ -75,7 +75,7 @@ public class OrderServiceTest {
 		orderService.cancelOrder(orderId);
 
 	    //then
-		Order getOrder = orderRepository.findOne(orderId);
+		Order getOrder = orderDaoImpl.findOne(orderId);
 		Assertions.assertEquals(getOrder.getStatus(), OrderStatus.CANCEL);
 		Assertions.assertEquals(book.getStockQuantity(), 3);
 	}

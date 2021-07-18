@@ -1,7 +1,7 @@
 package jpaBook.jpaShop.service;
 
 import jpaBook.jpaShop.domain.Member;
-import jpaBook.jpaShop.repository.MemberRepository;
+import jpaBook.jpaShop.repository.MemberDaoImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,12 +15,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MemberServiceTest {
 
 	MemberService memberService;
-	MemberRepository memberRepository;
+	MemberDaoImpl memberDaoImpl;
 
 	@Autowired
-	public MemberServiceTest(MemberService memberService, MemberRepository memberRepository) {
+	public MemberServiceTest(MemberService memberService, MemberDaoImpl memberDaoImpl) {
 		this.memberService = memberService;
-		this.memberRepository = memberRepository;
+		this.memberDaoImpl = memberDaoImpl;
 	}
 
 	@Test
