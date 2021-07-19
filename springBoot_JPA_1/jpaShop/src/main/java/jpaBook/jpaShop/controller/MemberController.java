@@ -1,5 +1,6 @@
 package jpaBook.jpaShop.controller;
 
+import jpaBook.jpaShop.controller.form.MemberForm;
 import jpaBook.jpaShop.domain.Address;
 import jpaBook.jpaShop.domain.Member;
 import jpaBook.jpaShop.service.MemberService;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -35,7 +35,6 @@ public class MemberController {
 		}
 
 		Address address = new Address(form.getZipcode(), form.getStreetAdr(), form.getDetailAdr());
-
 		Member member = new Member();
 		member.setName(form.getName());
 		member.setEmail(form.getEmail());

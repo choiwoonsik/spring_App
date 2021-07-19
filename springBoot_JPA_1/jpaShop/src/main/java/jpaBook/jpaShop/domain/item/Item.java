@@ -26,6 +26,9 @@ public abstract class Item {
 
 	private int stockQuantity;
 
+	@Enumerated(EnumType.STRING)
+	private ItemType itemType;
+
 	@ManyToMany(mappedBy = "items")
 	private List<Category> categories = new ArrayList<>();
 
