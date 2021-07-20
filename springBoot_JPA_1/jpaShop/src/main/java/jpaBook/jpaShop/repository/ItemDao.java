@@ -12,6 +12,11 @@ public interface ItemDao {
 	void save(Item item);
 
 	/*
+	Item 수정
+	 */
+	void change(Long id, String name, int price, int stockQuantity);
+
+	/*
 	Item id로 찾기
 	 */
 	Item findOne(Long id);

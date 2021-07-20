@@ -24,6 +24,14 @@ public class ItemDaoImpl implements ItemDao {
 		}
 	}
 
+	@Override
+	public void change(Long id, String name, int price, int stockQuantity) {
+		Item item = findOne(id);
+		item.setName(name);
+		item.setPrice(price);
+		item.setStockQuantity(stockQuantity);
+	}
+
 	public Item findOne(Long id) {
 		return em.find(Item.class, id);
 	}
