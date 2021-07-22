@@ -1,6 +1,8 @@
 package jpaBook.jpaShop.repository;
 
+import jpaBook.jpaShop.domain.item.Book;
 import jpaBook.jpaShop.domain.item.Item;
+import jpaBook.jpaShop.domain.item.ItemType;
 import jpaBook.jpaShop.exception.NoSuchItemInRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

@@ -26,9 +26,6 @@ public class ItemService {
 	@Transactional
 	public void updateItem(Long itemId, String name, int price, int stockQuantity) {
 		itemDaoImpl.change(itemId, name, price, stockQuantity);
-//		Item findItem = itemDaoImpl.findOne(itemId);
-//		findItem.setPrice(itemParam.getPrice());
-//		findItem.setStockQuantity(itemParam.getStockQuantity());
 	}
 
 	// 아이템 조회

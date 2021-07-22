@@ -46,11 +46,11 @@ public class ItemController {
 	}
 
 	@PostMapping("/items/book/new")
-	public String createBookItem(@Valid BookForm form, BindingResult binding) {
+	public String createBookItem(@ModelAttribute("form") @Valid BookForm form, BindingResult binding) {
 
 		if (binding.hasErrors()) {
 			log.info("BOOK ERROR !!!");
-			return "redirect:/items/book/new";
+			return "items/book/createBookForm";
 		}
 
 		Book book = new Book();
@@ -68,9 +68,10 @@ public class ItemController {
 	}
 
 	@PostMapping("/items/movie/new")
-	public String createMovieItem(@Valid MovieForm form, BindingResult binding) {
+	public String createMovieItem(@ModelAttribute("form") @Valid MovieForm form, BindingResult binding) {
 
 		if (binding.hasErrors()) {
+			log.info("MOVIE ERROR !!!");
 			return "items/movie/createMovieForm";
 		}
 
@@ -89,7 +90,13 @@ public class ItemController {
 	}
 
 	@PostMapping("/items/album/new")
-	public String createAlbumItem(@Valid AlbumForm form) {
+	public String createAlbumItem(@ModelAttribute("form") @Valid AlbumForm form, BindingResult binding) {
+
+		if (binding.hasErrors()) {
+			log.info("ALBUM ERROR !!!");
+			return "items/album/createAlbumForm";
+		}
+
 		Album album = new Album();
 		album.setId(form.getId());
 		album.setName(form.getName());
@@ -153,18 +160,14 @@ public class ItemController {
 	}
 
 	@PostMapping("/items/Book/{itemId}/edit")
-	public String updateBookItem(@PathVariable("itemId") Long itemId, @ModelAttribute("form") @Valid BookForm form, BindingResult binding) {
+	public String updateBookItem(
+			@PathVariable("itemId") Long itemId,
+			@ModelAttribute("form") @Valid BookForm form,
+			BindingResult binding) {
 
 		if (binding.hasErrors()) {
 			return "items/book/updateBookForm";
 		}
-
-//		Book book = new Book();
-//		book.setId(form.getId());
-//		book.setPrice(form.getPrice());
-//		book.setStockQuantity(form.getStockQuantity());
-//		book.setItemType(ItemType.Book);
-//		itemService.saveItem(book);
 
 		itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
 
@@ -172,43 +175,34 @@ public class ItemController {
 	}
 
 	@PostMapping("/items/Movie/{itemId}/edit")
-	public String updateMovieItem(@PathVariable("itemId") Long itemId, @ModelAttribute("form") @Valid MovieForm form, BindingResult binding) {
+	@ModelAttribute("form")
+	public String updateMovieItem(
+			@PathVariable("itemId") Long itemId,
+			@ModelAttribute("form") @Valid MovieForm form,
+			BindingResult binding) {
 
 		if (binding.hasErrors()) {
 			return "items/movie/updateMovieForm";
 		}
 
-		Movie movie = new Movie();
-		movie.setId(form.getId());
-		movie.setName(form.getName());
-		movie.setPrice(form.getPrice());
-		movie.setStockQuantity(form.getStockQuantity());
-		movie.setDirector(form.getDirector());
-		movie.setActor(form.getActor());
-		movie.setItemType(ItemType.Movie);
-		itemService.saveItem(movie);
+		itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
 
 		return "redirect:/items";
 	}
 
 	@PostMapping("/items/Album/{itemId}/edit")
-	public String updateAlbumItem(@PathVariable("itemId") Long itemId, @ModelAttribute("form") @Valid AlbumForm form, BindingResult binding) {
+	@ModelAttribute("form")
+	public String updateAlbumItem(
+			@PathVariable("itemId") Long itemId,
+			@ModelAttribute("form") @Valid AlbumForm form,
+			BindingResult binding) {
 
 		if (binding.hasErrors()) {
 			return "items/album/updateAlbumForm";
 		}
 
-		Album album = new Album();
-		album.setId(form.getId());
-		album.setName(form.getName());
-		album.setPrice(form.getPrice());
-		album.setStockQuantity(form.getStockQuantity());
-		album.setArtist(form.getArtist());
-		album.setArtist(form.getArtist());
-		album.setItemType(ItemType.Movie);
-		itemService.saveItem(album);
+		itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
 
 		return "redirect:/items";
 	}
-
 }

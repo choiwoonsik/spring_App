@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 public abstract class ItemForm {
 	private Long id;
 
-	@NotEmpty(message = "상품명을 일력해주세요.")
+	@NotEmpty(message = "상품명을 입력해주세요.")
 	private String name;
 
 	@NotNull(message = "상품 가격을 입력해주세요.")
