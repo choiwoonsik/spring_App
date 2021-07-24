@@ -1,4 +1,6 @@
 springboot_WebApp/*.pdf
 springboot_WebApp/h2
 springboot_webApp_Api/*.pdf
+springboot_webApp_Api/h2
+springboot_webApp_Api/도로명API
 .DS_Store
