@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Controller
@@ -36,10 +39,14 @@ public class OrderController {
 	}
 
 	@PostMapping("/order")
-	public String order(@RequestParam("memberId") Long memberId,
-						@RequestParam("itemId") Long itemId,
-						@RequestParam("count") int count) {
-		orderService.order(memberId, itemId, count);
+	public String order(@RequestParam("memberId") @NotNull Long memberId,
+						@RequestParam("itemId") @NotNull Long itemId,
+						@RequestParam("count") @Min(1) int count) {
+		try {
+			orderService.order(memberId, itemId, count);
+		} catch (Exception e) {
+			return "redirect:/order";
+		}
 		return "redirect:/orders";
 	}
 
