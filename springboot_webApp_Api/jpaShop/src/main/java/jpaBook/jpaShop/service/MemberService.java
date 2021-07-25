@@ -40,4 +40,10 @@ public class MemberService {
 	public Member findMember(Long memberId) {
 		return memberDaoImpl.findOne(memberId);
 	}
+
+	@Transactional
+	public void update(Long memberId, String name) {
+		Member member = memberDaoImpl.findOne(memberId);
+		member.setName(name);
+	}
 }
