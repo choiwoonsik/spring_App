@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository("MemberDao")
 @RequiredArgsConstructor
-public class MemberDaoImpl implements MemberDao {
+public class MemberRepository implements MemberDao {
 
 	private final EntityManager em;
 

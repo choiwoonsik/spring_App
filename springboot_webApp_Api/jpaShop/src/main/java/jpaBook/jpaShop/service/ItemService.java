@@ -1,9 +1,8 @@
 package jpaBook.jpaShop.service;
 
-import jpaBook.jpaShop.domain.item.Book;
 import jpaBook.jpaShop.domain.item.Item;
 import jpaBook.jpaShop.exception.NoSuchItemInRepository;
-import jpaBook.jpaShop.repository.ItemDaoImpl;
+import jpaBook.jpaShop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,32 +14,32 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemService {
 
-	private final ItemDaoImpl itemDaoImpl;
+	private final ItemRepository itemRepository;
 
 	// 아이템 등록
 	@Transactional
 	public void saveItem(Item item) {
-		itemDaoImpl.save(item);
+		itemRepository.save(item);
 	}
 
 	@Transactional
 	public void updateItem(Long itemId, String name, int price, int stockQuantity) {
-		itemDaoImpl.change(itemId, name, price, stockQuantity);
+		itemRepository.change(itemId, name, price, stockQuantity);
 	}
 
 	// 아이템 조회
 	public Item findItem(Long id) {
-		return itemDaoImpl.findOne(id);
+		return itemRepository.findOne(id);
 	}
 
 	// 모든 아이템 조회
 	public List<Item> findAllItems() {
-		return itemDaoImpl.findAll();
+		return itemRepository.findAll();
 	}
 
 	// 아이템 제거
 	@Transactional
 	public void removeItem(Item item) throws NoSuchItemInRepository {
-		itemDaoImpl.removeItem(item);
+		itemRepository.removeItem(item);
 	}
 }

@@ -1,21 +1,18 @@
 package jpaBook.jpaShop.repository;
 
-import jpaBook.jpaShop.domain.Member;
 import jpaBook.jpaShop.domain.Order;
+import jpaBook.jpaShop.repository.order.simplequery.OrderSimpleQueryDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.support.Querydsl;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository("OrderDao")
 @RequiredArgsConstructor
-public class OrderDaoImpl implements OrderDao {
+public class OrderRepository implements OrderDao {
 
 	private final EntityManager em;
 
@@ -82,5 +79,13 @@ public class OrderDaoImpl implements OrderDao {
 	 */
 	public List<Order> findAll(OrderSearch orderSearch) {
 		return null;
+	}
+
+	public List<Order> findAllWithMemberDelivery() {
+		return em.createQuery(
+				"select o from Order o" +
+						" join fetch o.member m" +
+						" join fetch o.delivery d", Order.class
+		).getResultList();
 	}
 }

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository("ItemDao")
 @RequiredArgsConstructor
-public class ItemDaoImpl implements ItemDao {
+public class ItemRepository implements ItemDao {
 
 	private final EntityManager em;
 

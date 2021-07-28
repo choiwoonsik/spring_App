@@ -5,9 +5,9 @@ import jpaBook.jpaShop.domain.Member;
 import jpaBook.jpaShop.domain.Order;
 import jpaBook.jpaShop.domain.OrderItem;
 import jpaBook.jpaShop.domain.item.Item;
-import jpaBook.jpaShop.repository.ItemDaoImpl;
-import jpaBook.jpaShop.repository.MemberDaoImpl;
-import jpaBook.jpaShop.repository.OrderDaoImpl;
+import jpaBook.jpaShop.repository.ItemRepository;
+import jpaBook.jpaShop.repository.MemberRepository;
+import jpaBook.jpaShop.repository.OrderRepository;
 import jpaBook.jpaShop.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,9 +23,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderService {
 
-	private final OrderDaoImpl orderDaoImpl;
-	private final MemberDaoImpl memberDaoImpl;
-	private final ItemDaoImpl itemDaoImpl;
+	private final OrderRepository orderRepository;
+	private final MemberRepository memberRepository;
+	private final ItemRepository itemRepository;
 	private final EntityManager em;
 
 	/**
@@ -35,8 +35,8 @@ public class OrderService {
 	public Long order(Long memberId, Long itemId, int count) {
 
 		// Entity 조회
-		Member member = memberDaoImpl.findOne(memberId);
-		Item item = itemDaoImpl.findOne(itemId);
+		Member member = memberRepository.findOne(memberId);
+		Item item = itemRepository.findOne(itemId);
 
 		// 배송정보 생성
 		Delivery delivery = new Delivery();
@@ -47,7 +47,7 @@ public class OrderService {
 
 		// 주문 생성
 		Order order = Order.createOrder(member, delivery, orderItem);
-		orderDaoImpl.save(order);
+		orderRepository.save(order);
 
 		return order.getId();
 	}
@@ -58,7 +58,7 @@ public class OrderService {
 	@Transactional
 	public void cancelOrder(Long orderId) {
 		// 주문 엔티티 조회
-		Order order = orderDaoImpl.findOne(orderId);
+		Order order = orderRepository.findOne(orderId);
 		// 주문 취소
 		order.cancel();
 	}
