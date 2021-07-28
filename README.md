@@ -7,5 +7,5 @@
 
 
 기존 로직에서 API 구현 및 JPA를 이용한 최적화
-- https://github.com/choiwoonsik/spring_app/tree/main/springboot_WebApp_Api
+- https://github.com/choiwoonsik/spring_app/tree/main/springboot_webApp_Api
 
