@@ -6,6 +6,8 @@ import jpaBook.jpaShop.domain.OrderItem;
 import jpaBook.jpaShop.domain.OrderStatus;
 import jpaBook.jpaShop.repository.OrderRepository;
 import jpaBook.jpaShop.repository.OrderSearch;
+import jpaBook.jpaShop.repository.order.query.OrderQueryDto;
+import jpaBook.jpaShop.repository.order.query.OrderQueryRepository;
 import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
 public class OrderApiController {
 
 	private final OrderRepository orderRepository;
+	private final OrderQueryRepository orderQueryRepository;
 
 	/*
 	Order -> OrderItem 내 Order에 JsonIgnore
@@ -54,11 +57,6 @@ public class OrderApiController {
 	@GetMapping("/api/v3/orders")
 	public List<OrderDto> orderV3() {
 		List<Order> orders = orderRepository.findAllWithItem();
-
-		for (Order order : orders) {
-			System.out.println("ref = " + order + ", id = " + order.getId());
-		}
-
 		List<OrderDto> all = orders.stream()
 				.map(OrderDto::new)
 				.collect(Collectors.toList());
@@ -69,7 +67,7 @@ public class OrderApiController {
 	join order_item oi on o.order_id = oi.order_id
 	 */
 
-	@GetMapping("api/v3.1/orders")
+	@GetMapping("/api/v3.1/orders")
 	public List<OrderDto> orderV3_page(
 			@RequestParam(value = "offset", defaultValue = "0") int offset,
 			@RequestParam(value = "limit", defaultValue = "100") int limit) {
@@ -80,6 +78,11 @@ public class OrderApiController {
 				.map(OrderDto::new)
 				.collect(Collectors.toList());
 		return all;
+	}
+
+	@GetMapping("/api/v4/orders")
+	public List<OrderQueryDto> orderV4() {
+		return orderQueryRepository.findOrderQueryDtos();
 	}
 
 
