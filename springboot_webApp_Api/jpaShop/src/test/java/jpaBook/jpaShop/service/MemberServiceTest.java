@@ -40,10 +40,10 @@ public class MemberServiceTest {
 	public void duplicatedMemberException() throws Exception {
 		//given
 		Member member1 = new Member();
-		member1.setName("mem1");
+		member1.setEmail("mem1");
 
 		Member member2 = new Member();
-		member2.setName("mem1");
+		member2.setEmail("mem1");
 
 		//when
 		memberService.join(member1);

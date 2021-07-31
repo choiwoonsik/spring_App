@@ -12,10 +12,4 @@ public class JpaShopApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JpaShopApplication.class, args);
 	}
-
-	@Bean
-	Hibernate5Module hibernate5Module() {
-		Hibernate5Module hibernate5Module = new Hibernate5Module();
-		return hibernate5Module;
-	}
 }
