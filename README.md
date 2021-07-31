@@ -1,7 +1,8 @@
 ### spring boot Web Application Project
 
 인프런 스프링 강의를 참고해서 진행
-- https://github.com/choiwoonsik/spring_app/tree/main/springboot_webApp_Api
+- https://github.com/choiwoonsik/spring_app/tree/main/springboot_WebApp (api 구현 전)
+- https://github.com/choiwoonsik/spring_app/tree/main/springboot_webApp_Api (api 구현 후)
 
 ---
 # 스프링 부트 웹 애플리케이션 개발 + API 구현
