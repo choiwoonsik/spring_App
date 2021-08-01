@@ -22,6 +22,8 @@
 
 jpaBook.jpaShop
 
+<img width="600" alt="스크린샷 2021-08-01 오후 7 13 38" src="https://user-images.githubusercontent.com/42247724/127767276-f35ed7d8-c8b8-4d1b-b671-8a9f3b8f4087.png">
+
 - api [코드](https://github.com/choiwoonsik/spring_app/tree/main/springboot_webApp_Api/jpaShop/src/main/java/jpaBook/jpaShop/api)
 - controller [코드](https://github.com/choiwoonsik/spring_app/tree/main/springboot_webApp_Api/jpaShop/src/main/java/jpaBook/jpaShop/controller)
   - form
