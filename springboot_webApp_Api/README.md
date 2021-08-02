@@ -37,7 +37,7 @@ jpaBook.jpaShop
 
 ## 구현
 #### API 정리 글
-[https://ws-pace.tistory.com - api 정리](https://ws-pace.tistory.com/category/Web/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%A0%95%EB%A6%AC%20%EC%9A%A9%EB%8F%84)
+[https://ws-pace.tistory.com - api 정리](https://ws-pace.tistory.com/category/Web/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8%20API%20%EC%84%A4%EA%B3%84%20%EC%A0%95%EB%A6%AC)
 
 #### 홈 화면
 <img width="300" alt="스크린샷 2021-07-24 오후 5 25 45" src="https://user-images.githubusercontent.com/42247724/126862573-2aa8721e-8bcd-4886-b243-e6e3bf0b09cc.png">
